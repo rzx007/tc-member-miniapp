@@ -1,0 +1,23 @@
+const config = require("./config");
+
+App({
+  globalData: {
+    env: "cloud1-5g2lsqgd13734a50",
+    useMockAuth: config.useMockAuth,
+    mockRole: config.mockRole,
+    useCloudData: config.useCloudData,
+    user: null,
+  },
+
+  onLaunch() {
+    if (!wx.cloud) {
+      console.error("请使用 2.2.3 或以上基础库以使用云能力");
+      return;
+    }
+
+    wx.cloud.init({
+      env: this.globalData.env || undefined,
+      traceUser: true,
+    });
+  },
+});

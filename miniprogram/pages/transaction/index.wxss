@@ -1,0 +1,39 @@
+.member-strip { display: flex; align-items: center; justify-content: space-between; margin: 48rpx 0 68rpx; padding-bottom: 42rpx; border-bottom: 1rpx solid #ddd; }
+.member-name, .member-phone, .current-balance text { display: block; }
+.member-name { font-family: "Songti SC", "SimSun", serif; font-size: 33rpx; }
+.member-phone { margin-top: 10rpx; color: #666; font-size: 23rpx; letter-spacing: 2rpx; }
+.current-balance { text-align: right; font-family: "Times New Roman", serif; font-size: 31rpx; }
+.balance-label { margin-top: 7rpx; color: #666; font-family: sans-serif; font-size: 21rpx; }
+.amount-field { margin-top: 0; }
+.amount-input { display: flex; align-items: center; min-height: 136rpx; border-bottom: 2rpx solid #171717; }
+.amount-input > text { margin-right: 22rpx; font-family: "Times New Roman", serif; font-size: 46rpx; }
+.amount-input input { flex: 1; height: 116rpx; font-family: "Times New Roman", serif; font-size: 82rpx; }
+.presets { width: 100%; display: flex; flex-wrap: wrap; align-items: stretch; justify-content: space-between; margin-top: 24rpx; }
+.preset-button { width: 31%; flex: 0 0 31%; height: 96rpx; min-height: 96rpx; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 0 16rpx; padding: 0 8rpx; border-radius: 50rpx; background: #f1f1f1; font-size: 24rpx; line-height: 1.2; }
+.preset-amount { display: block; font-weight: 500; }
+.preset-gift { display: block; margin-top: 7rpx; color: #666; font-size: 19rpx; }
+.preset-button.selected { background: #171717; color: #fff; }
+.preset-button.selected .preset-gift { color: rgba(255,255,255,.76); }
+.optional-toggle { width: 100%; min-height: 108rpx; display: flex; align-items: center; justify-content: space-between; margin-top: 36rpx; border-bottom: 1rpx solid #ddd; text-align: left; font-size: 25rpx; }
+.toggle-icon { font-size: 39rpx; font-weight: 200; transition: transform .2s ease-out; }
+.toggle-icon.open { transform: rotate(45deg); }
+.optional-content { animation: reveal .22s ease-out; }
+.result { margin-top: 44rpx; padding: 22rpx 0; border-top: 1rpx solid #ddd; font-size: 26rpx; }
+.gift-summary, .balance-summary { display: flex; align-items: center; justify-content: space-between; }
+.gift-summary { padding: 8rpx 0 22rpx; color: #555; font-size: 23rpx; }
+.balance-summary { min-height: 58rpx; }
+.result-value { font-family: "Times New Roman", serif; font-size: 40rpx; }
+.result.insufficient, .result.insufficient .result-value { color: #b42318; }
+.footer-hint { display: block; margin-top: 38rpx; color: #737373; font-size: 22rpx; line-height: 1.8; }
+.modal-layer { position: fixed; z-index: 100; top: 0; right: 0; bottom: 0; left: 0; display: flex; align-items: flex-end; padding: 30rpx; background: rgba(0,0,0,.48); }
+.modal { width: 100%; padding: 52rpx 46rpx calc(38rpx + env(safe-area-inset-bottom)); border-radius: 42rpx; background: #fafafa; animation: modal-in .25s ease-out; }
+.modal-title, .modal-member, .review-amount, .modal-hint { display: block; }
+.modal-title { font-family: "Songti SC", "SimSun", serif; font-size: 42rpx; }
+.modal-member { margin-top: 16rpx; color: #666; font-size: 23rpx; }
+.review-amount { margin: 42rpx 0; font-family: "Times New Roman", serif; font-size: 70rpx; }
+.review-row { display: flex; justify-content: space-between; font-size: 27rpx; }
+.modal-hint { margin-top: 30rpx; color: #666; font-size: 23rpx; }
+.modal-actions { display: flex; gap: 14rpx; margin-top: 42rpx; }
+.modal-actions button { flex: 1; }
+@keyframes reveal { from { opacity: .55; transform: translateY(-8rpx); } to { opacity: 1; transform: none; } }
+@keyframes modal-in { from { opacity: .6; transform: translateY(28rpx); } to { opacity: 1; transform: none; } }

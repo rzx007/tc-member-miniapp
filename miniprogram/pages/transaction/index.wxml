@@ -1,0 +1,25 @@
+<view wx:if="{{member}}" class="page-shell transaction-page">
+  <text class="page-title">{{isRecharge ? '登记充值' : '登记消费'}}</text>
+  <view class="member-strip"><view><text class="member-name">{{member.name}}</text><text class="member-phone">{{member.phoneMasked}}</text></view><view class="current-balance"><text>{{member.balanceText}}</text><text class="balance-label">当前余额（元）</text></view></view>
+  <view class="form-field amount-field"><text class="field-label">{{isRecharge ? '实收金额' : '扣款金额'}}（元）</text><view class="amount-input"><text>¥</text><input value="{{amount}}" bindinput="onAmountInput" type="digit" placeholder="0.00"></input></view>
+    <view wx:if="{{isRecharge}}" class="presets">
+      <button wx:for="{{presets}}" wx:key="id" class="preset-button {{selectedPromotionId === item.id ? 'selected' : ''}}" data-index="{{index}}" bindtap="choosePreset">
+        <text class="preset-amount">¥{{item.amountYuan}}</text><text wx:if="{{item.giftFen}}" class="preset-gift">赠 {{item.giftYuan}}</text>
+      </button>
+    </view>
+  </view>
+  <view class="form-field"><text class="field-label">{{isRecharge ? '收款方式' : '服务项目'}}</text><picker wx:if="{{isRecharge}}" range="{{methods}}" value="{{methodIndex}}" bindchange="onMethodChange"><view class="line-picker"><text>{{methods[methodIndex]}}</text><text>⌄</text></view></picker><picker wx:else range="{{services}}" value="{{serviceIndex}}" bindchange="onServiceChange"><view class="line-picker"><text>{{services[serviceIndex]}}</text><text>⌄</text></view></picker></view>
+  <button class="optional-toggle" bindtap="toggleOptional"><text>{{isRecharge ? '赠送与备注' : '补充备注'}} <text class="field-hint">选填</text></text><text class="toggle-icon {{showOptional ? 'open' : ''}}">＋</text></button>
+  <view wx:if="{{showOptional}}" class="optional-content">
+    <view wx:if="{{isRecharge}}" class="form-field"><text class="field-label">赠送余额（元）</text><input class="line-input" value="{{gift}}" bindinput="onGiftInput" type="digit" placeholder="0.00"></input></view>
+    <view class="form-field"><text class="field-label">备注</text><input class="line-input" value="{{remark}}" bindinput="onRemarkInput" maxlength="100" placeholder="补充本次记账信息"></input></view>
+  </view>
+  <view class="result {{insufficient ? 'insufficient' : ''}}"><view wx:if="{{isRecharge && hasGift}}" class="gift-summary"><text>活动赠送</text><text>+¥{{giftText}}</text></view><view class="balance-summary"><text>{{insufficient ? '余额不足，还差' : '记账后余额'}}</text><text class="result-value">¥{{afterBalanceText}}</text></view></view>
+  <text wx:if="{{error}}" class="error-message">{{error}}</text>
+  <text class="footer-hint">{{isRecharge ? '收到款项后再登记，本操作不会发起支付。' : '本次从余额扣款，积分不变。'}}</text>
+  <view class="bottom-dock"><button class="primary-button" bindtap="review">核对{{isRecharge ? '充值' : '消费'}} ›</button></view>
+</view>
+
+<view wx:if="{{showConfirm}}" class="modal-layer" catchtouchmove="true">
+  <view class="modal"><text class="modal-title">确认{{isRecharge ? '充值' : '消费'}}</text><text class="modal-member">{{member.name}} · {{member.phoneMasked}}</text><text class="review-amount">{{isRecharge ? '+' : '−'}}¥{{reviewData.changeText}}</text><view wx:if="{{isRecharge}}" class="review-row"><text>实收金额</text><text>¥{{reviewData.actualText}}</text></view><view wx:if="{{isRecharge && reviewData.giftFen}}" class="review-row"><text>活动赠送</text><text>+¥{{reviewData.giftText}}</text></view><view class="review-row"><text>记账后余额</text><text>¥{{reviewData.afterText}}</text></view><text class="modal-hint">{{isRecharge ? '请确认已收到充值款项。' : '请确认会员和扣款金额无误。'}}</text><view class="modal-actions"><button class="secondary-button" disabled="{{submitting}}" bindtap="cancelReview">返回修改</button><button class="primary-button" disabled="{{submitting}}" loading="{{submitting}}" bindtap="confirm">{{submitting ? '入账中' : '确认入账'}}</button></view></view>
+</view>

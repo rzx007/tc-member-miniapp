@@ -1,0 +1,17 @@
+<view class="welcome-page">
+  <image class="hero-image" src="/images/tc-makeup-editorial-frosted.jpg" mode="aspectFill" aria-label="黑白美妆人像"></image>
+  <view class="shade"></view>
+  <view class="brand-row">
+    <text class="brand-mark">T.C</text>
+    <text class="brand-name">造型</text>
+  </view>
+  <view class="welcome-copy">
+    <text class="eyebrow">欢迎来到 TC造型</text>
+    <text class="slogan">妆容，\n表达自我。</text>
+    <text class="welcome-foot">期待与你在店里相见</text>
+    <button wx:if="{{!loading && authorized}}" class="member-entry" bindtap="enterMembers">进入会员管理 <text>›</text></button>
+    <text wx:if="{{loading}}" class="identity-state">正在确认身份</text>
+  </view>
+  <view class="curve curve-one"></view>
+  <view class="curve curve-two"></view>
+</view>

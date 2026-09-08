@@ -1,0 +1,163 @@
+page {
+  min-height: 100%;
+  background: #fafafa;
+  color: #171717;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 28rpx;
+}
+
+view, text, button, input, textarea, picker {
+  box-sizing: border-box;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  font-size: inherit;
+  line-height: 1.4;
+}
+
+button::after {
+  border: 0;
+}
+
+.page-shell {
+  min-height: 100vh;
+  padding: 50rpx 54rpx calc(190rpx + env(safe-area-inset-bottom));
+}
+
+.page-title {
+  font-family: "Songti SC", "SimSun", serif;
+  font-size: 62rpx;
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: 3rpx;
+}
+
+.page-subtitle {
+  display: block;
+  margin-top: 18rpx;
+  color: #666;
+  font-size: 25rpx;
+  line-height: 1.8;
+}
+
+.primary-button,
+.secondary-button {
+  min-height: 100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 52rpx;
+  font-size: 27rpx;
+  font-weight: 500;
+}
+
+.primary-button:active,
+.secondary-button:active {
+  transform: scale(0.985);
+}
+
+.primary-button {
+  background: #171717;
+  color: #fff;
+}
+
+.secondary-button {
+  background: rgba(255, 255, 255, 0.72);
+  color: #171717;
+}
+
+.primary-button[disabled] {
+  background: #aaa;
+  color: #fff;
+}
+
+.form-field {
+  margin-top: 54rpx;
+}
+
+.field-label {
+  display: block;
+  margin-bottom: 18rpx;
+  font-size: 25rpx;
+  font-weight: 500;
+}
+
+.field-hint {
+  margin-left: 10rpx;
+  color: #737373;
+  font-size: 22rpx;
+  font-weight: 400;
+}
+
+.line-input,
+.line-textarea,
+.line-picker {
+  width: 100%;
+  min-height: 92rpx;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #202020;
+  background: transparent;
+  font-size: 30rpx;
+}
+
+.line-textarea {
+  height: 150rpx;
+  line-height: 1.7;
+}
+
+.line-picker {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.muted {
+  color: #666;
+}
+
+.error-message {
+  margin-top: 24rpx;
+  color: #b42318;
+  font-size: 24rpx;
+  line-height: 1.7;
+}
+
+.bottom-dock {
+  position: fixed;
+  z-index: 20;
+  right: 28rpx;
+  bottom: calc(22rpx + env(safe-area-inset-bottom));
+  left: 28rpx;
+  display: flex;
+  gap: 12rpx;
+  padding: 14rpx;
+  border: 1rpx solid rgba(255, 255, 255, 0.82);
+  border-radius: 70rpx;
+  background: rgba(248, 248, 248, 0.9);
+  box-shadow: 0 14rpx 44rpx rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(24rpx);
+}
+
+.bottom-dock button {
+  flex: 1;
+}
+
+.empty-state {
+  padding: 90rpx 10rpx;
+  text-align: center;
+}
+
+.empty-title {
+  font-size: 32rpx;
+}
+
+.empty-copy {
+  margin: 16rpx 0 34rpx;
+  color: #666;
+  font-size: 24rpx;
+  line-height: 1.8;
+}

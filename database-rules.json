@@ -1,0 +1,7 @@
+{
+  "members": { "read": false, "write": false },
+  "transactions": { "read": false, "write": false },
+  "operation_logs": { "read": false, "write": false },
+  "member_phones": { "read": false, "write": false },
+  "counters": { "read": false, "write": false }
+}

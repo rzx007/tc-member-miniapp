@@ -1,0 +1,48 @@
+<view class="page-shell members-page">
+  <view class="hero-banner">
+    <image class="hero-image" src="/images/tc-makeup-editorial.jpg" mode="aspectFill"></image>
+    <view class="hero-glass"></view>
+    <view class="hero-shade"></view>
+    <view class="hero-content">
+      <view class="hero-brand"><text class="hero-mark">TC.</text><text class="hero-en">MAKEUP\nATELIER</text></view>
+      <text class="hero-copy">每一位，都值得被记得。</text>
+    </view>
+    <text class="staff-badge">{{currentUserName}} · {{currentUserRoleText}}</text>
+  </view>
+  <view class="heading-row">
+    <text class="page-title">会员</text>
+    <view class="add-button" hover-class="add-button-pressed" hover-stay-time="80" role="button" bindtap="addMember">
+      <text class="plus">＋</text><text>新增</text>
+    </view>
+  </view>
+
+  <view class="summary" aria-label="全店会员统计">
+    <view class="summary-meta"><text>全店概览</text><text>金额单位：元</text></view>
+    <view class="stats">
+      <view class="stat"><text class="stat-label">会员总数</text><text class="stat-value count">{{summary.memberCount}}</text></view>
+      <view class="stat"><text class="stat-label">余额合计</text><text class="stat-value">{{summary.balanceText}}</text></view>
+      <view class="stat"><text class="stat-label">今日消费</text><text class="stat-value">{{summary.consumedText}}</text></view>
+    </view>
+  </view>
+
+  <view class="search-box">
+    <text class="search-icon">⌕</text>
+    <input value="{{query}}" bindinput="onSearchInput" placeholder="姓名 / 手机号 / 后四位" confirm-type="search"></input>
+    <button wx:if="{{query}}" class="clear-button" bindtap="clearSearch">×</button>
+  </view>
+
+  <view class="list-head">
+    <picker range="{{levels}}" value="{{levelIndex}}" bindchange="onLevelChange">
+      <view class="level-picker">{{levels[levelIndex]}}⌄</view>
+    </picker>
+    <text>余额（元）</text>
+  </view>
+
+  <view wx:if="{{members.length}}" class="member-list">
+    <view class="member-row" hover-class="member-row-pressed" hover-stay-time="80" role="button" wx:for="{{members}}" wx:key="id" data-id="{{item.id}}" bindtap="openMember">
+      <view class="member-main"><text class="member-name">{{item.name}}</text><text class="phone">{{item.phoneMasked}}</text></view>
+      <text class="member-balance">{{item.balanceText}}</text><text class="arrow">›</text>
+    </view>
+  </view>
+  <view wx:else class="empty-state"><text class="empty-title">还没有找到这位会员</text><text class="empty-copy">试试手机号后四位，或为新客建立档案。</text><button class="secondary-button" bindtap="addMember">新增会员</button></view>
+</view>

@@ -1,0 +1,19 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/members/index",
+    "pages/member-detail/index",
+    "pages/member-form/index",
+    "pages/transaction/index"
+  ],
+  "window": {
+    "backgroundColor": "#FAFAFA",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#FAFAFA",
+    "navigationBarTitleText": "TC造型",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents"
+}

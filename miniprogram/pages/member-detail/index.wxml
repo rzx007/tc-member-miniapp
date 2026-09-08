@@ -1,0 +1,24 @@
+<view wx:if="{{member}}" class="page-shell detail-page">
+  <view class="member-card {{member.level === '金卡' ? 'card-gold' : member.level === '银卡' ? 'card-silver' : 'card-classic'}}">
+    <view class="card-top"><view class="card-signature"><text class="card-logo">TC.</text><text class="card-brand">MAKEUP ATELIER</text></view><text class="card-tier">{{member.level || '普通会员'}}</text></view>
+    <view class="card-main">
+      <view class="card-identity"><text class="card-name">{{member.name}}</text><text class="card-phone">{{member.phoneMasked}}</text></view>
+      <view class="card-account"><text class="card-label">可用余额（元）</text><text class="card-amount">{{member.balanceText}}</text></view>
+    </view>
+    <view class="card-footer"><view class="card-points"><text>积分</text><text class="points-value">{{member.points}}</text></view><text class="card-number">No. {{member.memberNo}}</text></view>
+    <view class="curve card-curve-one"></view><view class="curve card-curve-two"></view>
+  </view>
+  <view class="section-head"><text>最近流水</text><text class="section-hint">点击查看详情</text></view>
+  <view wx:if="{{transactions.length}}">
+    <view class="transaction" wx:for="{{transactions}}" wx:key="id">
+      <view class="transaction-head" hover-class="transaction-head-pressed" hover-stay-time="80" role="button" data-id="{{item.id}}" bindtap="toggleTransaction">
+        <view><text class="transaction-title">{{item.title}}</text><text class="transaction-time">{{item.timeText}}</text></view>
+        <view class="transaction-amount {{item.positive ? 'positive' : ''}}"><text>{{item.amountText}}</text><text class="arrow {{expandedId === item.id ? 'open' : ''}}">›</text></view>
+      </view>
+      <view wx:if="{{expandedId === item.id}}" class="transaction-detail">{{item.operator}} · {{item.method}}<text wx:if="{{item.remark}}"> · {{item.remark}}</text>\n变动后余额 ¥{{item.balanceAfterText}}</view>
+    </view>
+  </view>
+  <view wx:else class="empty-state"><text class="empty-copy">暂无流水，首次充值后会显示在这里。</text></view>
+  <view class="member-note"><text>会员备注</text><text class="note-copy">{{member.remark || '暂无备注'}}</text></view>
+  <view class="bottom-dock"><button class="secondary-button" bindtap="goRecharge">＋ 充值</button><button class="primary-button" bindtap="goConsume">▣ 消费</button></view>
+</view>

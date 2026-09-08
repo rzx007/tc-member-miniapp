@@ -1,0 +1,17 @@
+page { background: #080808; }
+.welcome-page { position: relative; min-height: 100vh; overflow: hidden; background: #080808; color: #fff; }
+.hero-image { position: absolute; inset: 0; width: 100%; height: 100%; filter: grayscale(1); }
+.shade { position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: linear-gradient(180deg, rgba(0,0,0,.28) 0%, rgba(0,0,0,.01) 40%, rgba(0,0,0,.06) 58%, rgba(0,0,0,.34) 100%); }
+.brand-row { position: relative; z-index: 3; display: flex; align-items: flex-start; justify-content: space-between; padding: 56rpx; }
+.brand-mark { font-family: "Times New Roman", serif; font-size: 150rpx; line-height: .85; letter-spacing: -8rpx; }
+.brand-name { padding-top: 10rpx; font-size: 23rpx; letter-spacing: 8rpx; }
+.welcome-copy { position: absolute; z-index: 3; right: 58rpx; bottom: calc(76rpx + env(safe-area-inset-bottom)); left: 58rpx; display: flex; flex-direction: column; }
+.eyebrow { margin-bottom: 30rpx; font-size: 24rpx; }
+.slogan { white-space: pre-line; font-family: "Songti SC", "SimSun", serif; font-size: 68rpx; line-height: 1.55; letter-spacing: 10rpx; }
+.welcome-foot { margin-top: 42rpx; color: rgba(255,255,255,.82); font-size: 23rpx; letter-spacing: 3rpx; }
+.member-entry { width: 100%; min-height: 102rpx; display: flex; align-items: center; justify-content: center; gap: 16rpx; margin-top: 38rpx; border: 1rpx solid rgba(255,255,255,.72); border-radius: 54rpx; background: rgba(255,255,255,.9); color: #111; font-size: 27rpx; font-weight: 500; letter-spacing: 2rpx; box-shadow: 0 16rpx 44rpx rgba(0,0,0,.18); -webkit-backdrop-filter: blur(20rpx); backdrop-filter: blur(20rpx); }
+.member-entry text { font-size: 36rpx; font-weight: 300; }
+.member-entry:active { background: rgba(255,255,255,.76); transform: scale(.985); }
+.identity-state { height: 102rpx; display: flex; align-items: center; margin-top: 38rpx; color: rgba(255,255,255,.62); font-size: 21rpx; letter-spacing: 3rpx; }
+.curve { position: absolute; z-index: 3; right: -270rpx; bottom: -230rpx; width: 360rpx; height: 440rpx; border: 1rpx solid rgba(255,255,255,.42); border-radius: 50%; transform: rotate(-35deg); }
+.curve-two { right: -244rpx; bottom: -212rpx; width: 330rpx; height: 410rpx; border-color: rgba(255,255,255,.2); }
