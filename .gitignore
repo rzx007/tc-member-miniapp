@@ -1,0 +1,10 @@
+# Local WeChat DevTools settings
+project.private.config.json
+
+# Dependencies and generated files
+node_modules/
+miniprogram_npm/
+*.log
+
+# Employee OpenID allowlist — deploy locally, never commit
+cloudfunctions/tcService/config.private.js

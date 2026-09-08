@@ -2,7 +2,7 @@ const config = require("./config");
 
 App({
   globalData: {
-    env: "",
+    env: "cloud1-d0gxb0g2c9ca8ba41",
     useMockAuth: config.useMockAuth,
     mockRole: config.mockRole,
     useCloudData: config.useCloudData,

@@ -56,24 +56,38 @@ async function login() {
   const { openid, employee } = currentEmployee();
   console.log("TC login", { openid, authorized: Boolean(employee) });
   if (!employee) return { authorized: false, role: "visitor" };
-  const counter = await getOrNull(db.collection("counters").doc("memberNo"));
-  const initialized = Boolean(counter);
-  if (!initialized) await initialize();
-  return { authorized: true, name: employee.name, role: employee.role || "operator", initialized: true };
+  return { authorized: true, name: employee.name, role: employee.role || "operator" };
 }
 
 async function initialize() {
   requireEmployee();
-  for (const name of COLLECTIONS) {
+  await Promise.all(COLLECTIONS.map(async (name) => {
     try { await db.createCollection(name); }
     catch (error) {
       const message = String(error.errMsg || error.message || "");
       if (!/exist|已存在/i.test(message)) throw error;
     }
-  }
+  }));
   const counter = await getOrNull(db.collection("counters").doc("memberNo"));
   if (!counter) await db.collection("counters").doc("memberNo").set({ data: { value: 0, updatedAt: new Date() } });
   return { collections: COLLECTIONS, initialized: true };
+}
+
+async function initializeCollection(event) {
+  const { employee } = requireEmployee();
+  if (employee.role !== "super_admin") throw new ServiceError("FORBIDDEN", "只有超级管理员可以初始化数据库");
+  const name = assertString(event.name, "集合名称", 40);
+  if (!COLLECTIONS.includes(name)) throw new ServiceError("INVALID_INPUT", "集合名称不正确");
+  try { await db.createCollection(name); }
+  catch (error) {
+    const message = String(error.errMsg || error.message || "");
+    if (!/exist|已存在/i.test(message)) throw error;
+  }
+  if (name === "counters") {
+    const counter = await getOrNull(db.collection("counters").doc("memberNo"));
+    if (!counter) await db.collection("counters").doc("memberNo").set({ data: { value: 0, updatedAt: new Date() } });
+  }
+  return { name, initialized: true };
 }
 
 async function listMembers(event) {
@@ -181,7 +195,7 @@ async function createTransaction(event) {
   });
 }
 
-const handlers = { initialize, listMembers, getMember, getSummary, createMember, createTransaction };
+const handlers = { initialize, initializeCollection, listMembers, getMember, getSummary, createMember, createTransaction };
 
 exports.main = async (event = {}) => {
   if (event.action === "login") {
