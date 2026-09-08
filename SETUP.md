@@ -3,9 +3,10 @@
 ## 当前状态
 
 - 已完成黑白视觉的小程序原生页面：欢迎、会员列表与统计、会员详情、新增会员、充值、消费。
-- 云环境 ID 已配置为 `cloud1-5g2lsqgd13734a50`。
-- `miniprogram/config.js` 当前为 `useMockAuth: false`、`useCloudData: true`：真实鉴权和真实云数据均已启用。
-- `tcService` 已部署，首位超级管理员已加入白名单，5 个数据库集合已自动初始化。
+- 项目 AppID 已切换为 `wx9f6091cc5772dcd4`。
+- 新 AppID 的云环境 ID 尚未取得，`miniprogram/app.js` 中环境 ID 当前为空。
+- `miniprogram/config.js` 当前为 `useMockAuth: true`、`useCloudData: false`，可继续使用本地模拟数据预览。
+- 原云环境 `cloud1-5g2lsqgd13734a50` 和原 AppID 的数据未删除，但不能直接作为新 AppID 的员工身份来源。
 
 ## 查看访客欢迎页
 
@@ -23,9 +24,10 @@
 
 ## 配置正式 OpenID 白名单并启用云数据
 
-1. 5 个集合均已设置为“所有用户不可读写”，客户端绕过云函数的读取验证已被拒绝。
-2. 其余员工打开一次首页后，从 `tcService` 日志取得 OpenID，追加到 `cloudfunctions/tcService/config.js` 并重新部署；最多 5 人。
-3. 非白名单用户始终停留在品牌首页，白名单员工进入会员管理。
+1. 使用有 `wx9f6091cc5772dcd4` 开发权限的微信账号登录开发者工具，并为该 AppID 创建云环境。
+2. 将新环境 ID 填入 `miniprogram/app.js`，部署 `tcService`。
+3. 切换 `useMockAuth: false`，重新收集新 AppID 下的员工 OpenID，并部署白名单。
+4. 初始化集合并设置为“所有用户不可读写”，验证后切换 `useCloudData: true`。
 
 ## 数据一致性
 
